@@ -1,0 +1,10 @@
+# Crypto Structure Brief
+
+> Independent crypto news tracking capital flows, exchange liquidity, derivatives positioning and protocol activity for researchers and market analysts.
+
+Coverage: Exchange Liquidity, Derivatives Positioning, Stablecoin Flows, Protocol Economics, Market Infrastructure.
+
+## Key pages
+- [Homepage](https://ethereumblogs.github.io/): latest reporting and analysis.
+- [About](https://ethereumblogs.github.io/about/): editorial scope, independence, sourcing and corrections.
+- [Archive](https://ethereumblogs.github.io/archive/): everything published.
