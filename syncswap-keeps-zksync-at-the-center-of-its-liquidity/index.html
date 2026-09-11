@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en-GB" data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SyncSwap on ZKsync: Liquidity, Volume and Pool Design</title>
+<meta name="description" content="SyncSwap still concentrates liquidity on ZKsync Era, but modest turnover and incomplete Aqua-pool coverage complicate the case for durable market depth.">
+<link rel="canonical" href="https://ethereumblogs.github.io/syncswap-keeps-zksync-at-the-center-of-its-liquidity/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1"><meta name="theme-color" content="#e9e5dc">
+<meta name="author" content="Crypto Structure Brief Newsroom"><meta property="og:type" content="article">
+<meta property="og:site_name" content="Crypto Structure Brief">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="SyncSwap Keeps ZKsync at the Center of Its Liquidity">
+<meta property="og:description" content="SyncSwap still concentrates liquidity on ZKsync Era, but modest turnover and incomplete Aqua-pool coverage complicate the case for durable market depth.">
+<meta property="og:url" content="https://ethereumblogs.github.io/syncswap-keeps-zksync-at-the-center-of-its-liquidity/">
+<meta property="og:image" content="https://ethereumblogs.github.io/assets/covers/syncswap-keeps-zksync-at-the-center-of-its-liquidity-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SyncSwap Keeps ZKsync at the Center of Its Liquidity"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SyncSwap Keeps ZKsync at the Center of Its Liquidity">
+<meta name="twitter:description" content="SyncSwap still concentrates liquidity on ZKsync Era, but modest turnover and incomplete Aqua-pool coverage complicate the case for durable market depth.">
+<meta property="article:published_time" content="2026-09-11T17:41:04+00:00">
+<meta property="article:section" content="Exchange Liquidity"><meta property="article:tag" content="Exchange Liquidity">
+<meta property="article:tag" content="Protocol Economics">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="/assets/s010e75fe0d.css">
+<link rel="icon" href="/assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Crypto Structure Brief" href="/feed.xml"><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://ethereumblogs.github.io/#website",
+      "name": "Crypto Structure Brief",
+      "url": "https://ethereumblogs.github.io/",
+      "publisher": {
+        "@id": "https://ethereumblogs.github.io/#org"
+      },
+      "inLanguage": "en-GB",
+      "description": "Independent crypto news tracking capital flows, exchange liquidity, derivatives positioning and protocol activity for researchers and market analysts."
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ethereumblogs.github.io/syncswap-keeps-zksync-at-the-center-of-its-liquidity/#webpage",
+      "url": "https://ethereumblogs.github.io/syncswap-keeps-zksync-at-the-center-of-its-liquidity/",
+      "name": "SyncSwap on ZKsync: Liquidity, Volume and Pool Design",
+      "isPartOf": {
+        "@id": "https://ethereumblogs.github.io/#website"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://ethereumblogs.github.io/syncswap-keeps-zksync-at-the-center-of-its-liquidity/#article",
+      "headline": "SyncSwap Keeps ZKsync at the Center of Its Liquidity",
+      "isAccessibleForFree": true,
+      "description": "SyncSwap still concentrates liquidity on ZKsync Era, but modest turnover and incomplete Aqua-pool coverage complicate the case for durable market depth.",
+      "datePublished": "2026-09-11T17:41:04+00:00",
+      "dateModified": "2026-09-11T17:41:04+00:00",
+      "url": "https://ethereumblogs.github.io/syncswap-keeps-zksync-at-the-center-of-its-liquidity/",
+      "mainEntityOfPage": {
+        "@id": "https://ethereumblogs.github.io/syncswap-keeps-zksync-at-the-center-of-its-liquidity/#webpage"
+      },
+      "inLanguage": "en-GB",
+      "author": {
+        "@type": "Organization",
+        "@id": "https://ethereumblogs.github.io/#editorial",
+        "name": "Crypto Structure Brief Newsroom",
+        "parentOrganization": {
+          "@id": "https://ethereumblogs.github.io/#org"
+        }
+      },
+      "publisher": {
+        "@id": "https://ethereumblogs.github.io/#org"
+      },
+      "keywords": "Exchange Liquidity, Protocol Economics",
+      "articleSection": "Exchange Liquidity",
+      "wordCount": 537,
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://ethereumblogs.github.io/assets/covers/syncswap-keeps-zksync-at-the-center-of-its-liquidity.jpg",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ethereumblogs.github.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "SyncSwap Keeps ZKsync at the Center of Its Liquidity",
+          "item": "https://ethereumblogs.github.io/syncswap-keeps-zksync-at-the-center-of-its-liquidity/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://ethereumblogs.github.io/#org",
+      "name": "Crypto Structure Brief",
+      "url": "https://ethereumblogs.github.io/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ethereumblogs.github.io/assets/apple-touch-icon.png"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://ethereumblogs.github.io/assets/og.jpg",
+        "width": 1200,
+        "height": 630
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body data-page="post">
+<a class="se1f4159" href="#main">Skip to content</a>
+<header class="se06ccae">
+  <div class="s42ad1de s84e03f3">
+    <a class="sd62ac76" href="/" aria-label="Crypto Structure Brief home">
+      <span class="s4290800" aria-hidden="true">CS</span>
+      <span class="s3a270ac">Crypto Structure Brief</span>
+    </a>
+    <p class="s43eae37">Capital flows, liquidity and market structure</p>
+  </div>
+</header>
+
+<main id="main">
+<article class="s42ad1de s46c39ab">
+  <header class="s4d28199">
+    <p class="s08fdac7">Exchange Liquidity</p>
+    <h1 class="s4974cd1 s0e10e79">SyncSwap Keeps ZKsync at the Center of Its Liquidity</h1>
+    <p class="s326eca2">SyncSwap still concentrates liquidity on ZKsync Era, but modest turnover and incomplete Aqua-pool coverage complicate the case for durable market depth.</p>
+    <div class="s50c39c7">
+      <span>By Crypto Structure Brief Newsroom</span>
+      <time datetime="2026-09-11T17:41:04+00:00">Sep 11, 2026</time>
+      <span>2 min read</span>
+    </div>
+  </header>
+  <figure class="s1562479">
+    <img src="/assets/covers/syncswap-keeps-zksync-at-the-center-of-its-liquidity.jpg" alt="SyncSwap Keeps ZKsync at the Center of Its Liquidity" width="1200" height="630" decoding="async" fetchpriority="high">
+  </figure>
+  <div class="s0f2c207 s99d3d12"><p>As of September 11, 2026, SyncSwap remained a ZKsync-first exchange: its Era deployment processed $5.87 million in spot volume over the trailing 30 days. That represented roughly 70% of SyncSwap’s $8.38 million in cross-chain volume for the same window, according to DefiLlama’s on-chain event aggregation.</p>
+
+<p>The same snapshot placed $6.30 million of the protocol’s $8.78 million total value locked on ZKsync Era, a 71.8% share. Those figures describe capital and completed swaps, not trader motivation; they cannot establish whether the flow came from discretionary users, arbitrage bots or incentive-driven positioning.</p>
+
+<h2>What does SyncSwap do on ZKsync?</h2>
+
+<p>It gives ZKsync users an automated market maker whose routing can draw from several pool designs rather than forcing every asset pair through one pricing curve. The architecture documented by <a href="https://syncswap.dev" rel="noopener">Syncswap</a> separates pool creation, registration and fee management, allowing the exchange to tune execution for different assets while retaining a common router.</p>
+
+<ul>
+<li><strong>Classic pools</strong> use the constant-product formula associated with general-purpose token trading.</li>
+<li><strong>Stable pools</strong> use a hybrid curve intended to reduce slippage between closely priced assets.</li>
+<li><strong>Aqua pools</strong> apply a dynamic hybrid curve with automatic rebalancing for volatile assets and liquid-staking tokens.</li>
+<li><strong>Pool Master</strong> registers pools and exposes current fee settings through a replaceable Fee Manager.</li>
+</ul>
+
+<p>ZKsync changes the cost envelope rather than the economic bargain. Traders still pay swap fees and price impact; liquidity providers still earn fees while accepting inventory risk and impermanent loss. The rollup can lower execution costs, but its fees also incorporate the cost of publishing data to Ethereum.</p>
+
+<h2>Liquidity still clusters on Era</h2>
+
+<p>SyncSwap’s aggregate TVL rose 5.5% over the preceding 30 days, yet the September 11 distribution remained concentrated: ZKsync held $6.30 million, versus $1.55 million on Linea, about $910,000 on Scroll and $16,000 on Sophon. Era’s trailing volume was about 93% of its point-in-time TVL, a rough turnover comparison rather than a measure of executable depth.</p>
+
+<p>DefiLlama recorded $12,415 in ZKsync fees and $3,700 in protocol revenue over that 30-day window. Its published volume method sums Swap events from Classic and Stable pools and values the core-asset side. Aqua activity is not identified in that coverage description, so the total may not capture every venue available through the router.</p>
+
+<h2>Who gains from the pool design?</h2>
+
+<p>No counterparty wins in every market regime. Stable-asset traders benefit when a specialized curve concentrates liquidity near parity. Volatile-pair traders gain if Aqua’s rebalancing keeps capital near the active price, while providers trade greater capital efficiency for more active inventory exposure. Arbitrageurs connect those pools with outside markets, correcting price gaps but extracting value when quotes lag.</p>
+
+<p>The recorded transactions show that assets changed hands and fees accrued. They do not prove that users preferred ZKsync for security, incentives or execution quality. Pool-level reserves, realized slippage and wallet-level flow classification would be needed to separate those explanations.</p>
+
+<h2>The unresolved test is usable depth</h2>
+
+<p>SyncSwap remains meaningful infrastructure for ZKsync because most of its capital and measured trading still reside there. The verdict is narrower than dominance: $6.30 million can support routine swaps, but TVL alone does not guarantee tight execution during volatility. The next evidence to watch is pool-level depth, Aqua-event coverage, weekly fee retention and whether Era volume grows faster than deposited liquidity without temporary rewards.</p></div>
+  <section class="sfff9d48" aria-label="Article topics">
+    <h2 class="s0e94f1e">Filed under</h2>
+    <ul class="s668eec3">
+      <li class="s1aa102e">Exchange Liquidity</li>
+      <li class="s1aa102e">Protocol Economics</li>
+    </ul>
+  </section>
+  <section class="s5f1341f" aria-labelledby="cs-related-title">
+    <h2 class="s4974cd1 s3aa9319" id="cs-related-title">Related reporting</h2>
+    <ul class="s7cbf0eb">
+      <li class="s06abdf7"><a href="/transaction-batching-turns-shared-bytes-into-lower-fees/">Transaction Batching Turns Shared Bytes Into Lower Fees</a></li>
+      <li class="s06abdf7"><a href="/block-propagation-sets-cryptos-real-speed-limit/">Block Propagation Sets Crypto’s Real Speed Limit</a></li>
+      <li class="s06abdf7"><a href="/sgx-opens-bitcoin-and-ether-perpetuals-to-u-s-institutions/">SGX Opens Bitcoin and Ether Perpetuals to U.S. Institutions</a></li>
+    </ul>
+  </section>
+</article>
+</main>
+
+<footer class="s4c6b808">
+  <div class="s42ad1de">
+    <div class="s9f48bbf">
+      <p class="sacc9a5a">Crypto Structure Brief</p>
+      <nav class="sd651a77" aria-label="Publication">
+        <h2 class="s0e94f1e">Publication</h2>
+        <ul class="s0c864b0">
+          <li><a href="/">Front page</a></li>
+          <li><a href="/archive/">Archive</a></li>
+          <li><a href="/about/">Masthead</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </nav>
+      <nav class="sd651a77" aria-label="Coverage">
+        <h2 class="s0e94f1e">Coverage</h2>
+        <ul class="s0c864b0">
+          <li><a href="/topics/market-infrastructure/">Market Infrastructure</a></li>
+          <li><a href="/topics/protocol-economics/">Protocol Economics</a></li>
+          <li><a href="/topics/exchange-liquidity/">Exchange Liquidity</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="s9874672">An independent outlet. Nothing here is financial advice.</p>
+    <p class="sfa896e2">© 2026 Crypto Structure Brief</p>
+  </div>
+</footer>
+</body>
+</html>
