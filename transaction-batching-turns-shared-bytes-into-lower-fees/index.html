@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en-GB" data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transaction Batching: How Shared Bytes Cut Network Fees</title>
+<meta name="description" content="Transaction batching cuts fees by sharing fixed transaction data across many payments, but operators trade speed, privacy and fee-bumping flexibility.">
+<link rel="canonical" href="https://ethereumblogs.github.io/transaction-batching-turns-shared-bytes-into-lower-fees/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1"><meta name="theme-color" content="#e9e5dc">
+<meta name="author" content="Crypto Structure Brief Newsroom"><meta property="og:type" content="article">
+<meta property="og:site_name" content="Crypto Structure Brief">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Transaction Batching Turns Shared Bytes Into Lower Fees">
+<meta property="og:description" content="Transaction batching cuts fees by sharing fixed transaction data across many payments, but operators trade speed, privacy and fee-bumping flexibility.">
+<meta property="og:url" content="https://ethereumblogs.github.io/transaction-batching-turns-shared-bytes-into-lower-fees/">
+<meta property="og:image" content="https://ethereumblogs.github.io/assets/covers/transaction-batching-turns-shared-bytes-into-lower-fees-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Transaction Batching Turns Shared Bytes Into Lower Fees"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Transaction Batching Turns Shared Bytes Into Lower Fees">
+<meta name="twitter:description" content="Transaction batching cuts fees by sharing fixed transaction data across many payments, but operators trade speed, privacy and fee-bumping flexibility.">
+<meta property="article:published_time" content="2026-09-11T12:32:56+00:00">
+<meta property="article:section" content="Market Infrastructure"><meta property="article:tag" content="Protocol Economics">
+<meta property="article:tag" content="Market Infrastructure">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="/assets/s010e75fe0d.css">
+<link rel="icon" href="/assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Crypto Structure Brief" href="/feed.xml"><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://ethereumblogs.github.io/#website",
+      "name": "Crypto Structure Brief",
+      "url": "https://ethereumblogs.github.io/",
+      "publisher": {
+        "@id": "https://ethereumblogs.github.io/#org"
+      },
+      "inLanguage": "en-GB",
+      "description": "Independent crypto news tracking capital flows, exchange liquidity, derivatives positioning and protocol activity for researchers and market analysts."
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ethereumblogs.github.io/transaction-batching-turns-shared-bytes-into-lower-fees/#webpage",
+      "url": "https://ethereumblogs.github.io/transaction-batching-turns-shared-bytes-into-lower-fees/",
+      "name": "Transaction Batching: How Shared Bytes Cut Network Fees",
+      "isPartOf": {
+        "@id": "https://ethereumblogs.github.io/#website"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://ethereumblogs.github.io/transaction-batching-turns-shared-bytes-into-lower-fees/#article",
+      "headline": "Transaction Batching Turns Shared Bytes Into Lower Fees",
+      "isAccessibleForFree": true,
+      "description": "Transaction batching cuts fees by sharing fixed transaction data across many payments, but operators trade speed, privacy and fee-bumping flexibility.",
+      "datePublished": "2026-09-11T12:32:56+00:00",
+      "dateModified": "2026-09-11T12:32:56+00:00",
+      "url": "https://ethereumblogs.github.io/transaction-batching-turns-shared-bytes-into-lower-fees/",
+      "mainEntityOfPage": {
+        "@id": "https://ethereumblogs.github.io/transaction-batching-turns-shared-bytes-into-lower-fees/#webpage"
+      },
+      "inLanguage": "en-GB",
+      "author": {
+        "@type": "Organization",
+        "@id": "https://ethereumblogs.github.io/#editorial",
+        "name": "Crypto Structure Brief Newsroom",
+        "parentOrganization": {
+          "@id": "https://ethereumblogs.github.io/#org"
+        }
+      },
+      "publisher": {
+        "@id": "https://ethereumblogs.github.io/#org"
+      },
+      "keywords": "Protocol Economics, Market Infrastructure",
+      "articleSection": "Protocol Economics",
+      "wordCount": 532,
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://ethereumblogs.github.io/assets/covers/transaction-batching-turns-shared-bytes-into-lower-fees.jpg",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ethereumblogs.github.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Transaction Batching Turns Shared Bytes Into Lower Fees",
+          "item": "https://ethereumblogs.github.io/transaction-batching-turns-shared-bytes-into-lower-fees/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://ethereumblogs.github.io/#org",
+      "name": "Crypto Structure Brief",
+      "url": "https://ethereumblogs.github.io/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ethereumblogs.github.io/assets/apple-touch-icon.png"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://ethereumblogs.github.io/assets/og.jpg",
+        "width": 1200,
+        "height": 630
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body data-page="post">
+<a class="se1f4159" href="#main">Skip to content</a>
+<header class="se06ccae">
+  <div class="s42ad1de s84e03f3">
+    <a class="sd62ac76" href="/" aria-label="Crypto Structure Brief home">
+      <span class="s4290800" aria-hidden="true">CS</span>
+      <span class="s3a270ac">Crypto Structure Brief</span>
+    </a>
+    <p class="s43eae37">Capital flows, liquidity and market structure</p>
+  </div>
+</header>
+
+<main id="main">
+<article class="s42ad1de s46c39ab">
+  <header class="s4d28199">
+    <p class="s08fdac7">Protocol Economics</p>
+    <h1 class="s4974cd1 s0e10e79">Transaction Batching Turns Shared Bytes Into Lower Fees</h1>
+    <p class="s326eca2">Transaction batching cuts fees by sharing fixed transaction data across many payments, but operators trade speed, privacy and fee-bumping flexibility.</p>
+    <div class="s50c39c7">
+      <span>By Crypto Structure Brief Newsroom</span>
+      <time datetime="2026-09-11T12:32:56+00:00">Sep 11, 2026</time>
+      <span>2 min read</span>
+    </div>
+  </header>
+  <figure class="s1562479">
+    <img src="/assets/covers/transaction-batching-turns-shared-bytes-into-lower-fees.jpg" alt="Transaction Batching Turns Shared Bytes Into Lower Fees" width="1200" height="630" decoding="async" fetchpriority="high">
+  </figure>
+  <div class="s0f2c207 s99d3d12"><p>On August 12, 2020, Veriphi reported that transaction batching—combining many recipients under one transaction’s shared input and overhead—could have saved more than 21,000 BTC in fees from January 2012 through June 2020. That figure was a counterfactual estimate, not an observed rebate: researchers reconstructed potentially batchable activity from public blocks and compared its weight with a modeled alternative.</p>
+
+<h2>What does a batch actually share?</h2>
+
+<p>A batch replaces several separate transactions with one transaction containing multiple payment outputs. On Bitcoin, every standalone payment ordinarily carries inputs, fixed transaction fields and a change output. A batched sender pays much of that overhead once, then adds a smaller output for each recipient.</p>
+
+<p>Bitcoin Optech’s March 2021 P2WPKH example makes the arithmetic visible. One conventional payment occupied about 140 virtual bytes. Expanding it to five recipients produced a 264-vbyte transaction, or roughly 53 vbytes per receiver. Sending five separate 140-vbyte transactions would consume about 700 vbytes. The coins transferred do not shrink; the repeated packaging does.</p>
+
+<p>Account-based networks apply the same principle differently. An exchange or smart contract can group actions beneath a shared transaction envelope, while rollups aggregate many state changes before posting compressed data or a commitment to the settlement chain. The common economic result is amortization: more transfers share fixed verification and publication costs.</p>
+
+<h2>The savings move through several counterparties</h2>
+
+<ul>
+<li><strong>Senders</strong> purchase fewer bytes or less execution overhead for the same withdrawal count.</li>
+<li><strong>Recipients</strong> share one confirmation event and may wait while the operator fills the batch.</li>
+<li><strong>Miners or validators</strong> receive a fee for the combined transaction rather than several independent fees.</li>
+<li><strong>Other users</strong> face less block-space competition if batching removes redundant data at scale.</li>
+</ul>
+
+<p>Operators can improve the result by consolidating fragmented Bitcoin inputs when fee rates are low, then spending a larger input into later batches. That changes treasury timing: funds are reorganized before demand arrives, and withdrawals may remain queued longer. The operational note labeled <a href="https://graph.org/Manta-Bridge-Keep-ETH-Available-After-Bridging-09-11" rel="noopener">Manta Bridge</a> points to an adjacent constraint—efficient transfer execution does not eliminate the need to retain native assets for subsequent gas.</p>
+
+<h2>Where does batching create new costs?</h2>
+
+<p>Waiting for more recipients lowers average cost but increases withdrawal latency. A multi-output transaction also exposes a relationship among payments: observers can see that the outputs settled together, even if they cannot prove who controls them. More outputs are observable; identifying an exchange, payroll processor or bridge as the sender remains attribution unless a wallet is disclosed or independently labeled.</p>
+
+<p>Fee management becomes less flexible, too. One underpriced batch can delay every recipient. Replacement may confuse wallets, while a recipient attempting child-pays-for-parent can face an uneconomic burden because the child must help lift a large shared parent. Larger batches also concentrate operational mistakes into a wider payout set.</p>
+
+<h2>The unresolved question is who captures the savings</h2>
+
+<p>Batching clearly lowers marginal network consumption, but lower production cost does not guarantee cheaper withdrawals. An operator can pass the saving through, use it to stabilize fixed fees, or retain it as spread. The evidence to watch is the joint movement of labeled services’ output counts, mempool fee rates, consolidation timing and published withdrawal charges. That comparison—not transaction shape alone—will show whether batching improves market access or merely widens an intermediary’s margin.</p></div>
+  <section class="sfff9d48" aria-label="Article topics">
+    <h2 class="s0e94f1e">Filed under</h2>
+    <ul class="s668eec3">
+      <li class="s1aa102e">Protocol Economics</li>
+      <li class="s1aa102e">Market Infrastructure</li>
+    </ul>
+  </section>
+  <section class="s5f1341f" aria-labelledby="cs-related-title">
+    <h2 class="s4974cd1 s3aa9319" id="cs-related-title">Related reporting</h2>
+    <ul class="s7cbf0eb">
+      <li class="s06abdf7"><a href="/block-propagation-sets-cryptos-real-speed-limit/">Block Propagation Sets Crypto’s Real Speed Limit</a></li>
+      <li class="s06abdf7"><a href="/sgx-opens-bitcoin-and-ether-perpetuals-to-u-s-institutions/">SGX Opens Bitcoin and Ether Perpetuals to U.S. Institutions</a></li>
+    </ul>
+  </section>
+</article>
+</main>
+
+<footer class="s4c6b808">
+  <div class="s42ad1de">
+    <div class="s9f48bbf">
+      <p class="sacc9a5a">Crypto Structure Brief</p>
+      <nav class="sd651a77" aria-label="Publication">
+        <h2 class="s0e94f1e">Publication</h2>
+        <ul class="s0c864b0">
+          <li><a href="/">Front page</a></li>
+          <li><a href="/archive/">Archive</a></li>
+          <li><a href="/about/">Masthead</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </nav>
+      <nav class="sd651a77" aria-label="Coverage">
+        <h2 class="s0e94f1e">Coverage</h2>
+        <ul class="s0c864b0">
+          <li><a href="/topics/market-infrastructure/">Market Infrastructure</a></li>
+          <li><a href="/topics/protocol-economics/">Protocol Economics</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="s9874672">An independent outlet. Nothing here is financial advice.</p>
+    <p class="sfa896e2">© 2026 Crypto Structure Brief</p>
+  </div>
+</footer>
+</body>
+</html>
